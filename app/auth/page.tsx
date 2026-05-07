@@ -1,11 +1,12 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 
 const AVATARS = ['😤','😈','🔥','💀','⚡','🤌','😏','🥊','🎯','👿']
 
-export default function AuthPage() {
+function AuthContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const mode = searchParams.get('mode') || 'login'
@@ -31,11 +32,26 @@ export default function AuthPage() {
           data: { username, avatar_emoji: avatar }
         }
       })
-      if (error) { setError(error.message); setLoading(false); return }
+
+      if (error) {
+        setError(error.message)
+        setLoading(false)
+        return
+      }
+
       router.replace('/lobby')
     } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
-      if (error) { setError('Email o contraseña incorrectos'); setLoading(false); return }
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+
+      if (error) {
+        setError('Email o contraseña incorrectos')
+        setLoading(false)
+        return
+      }
+
       router.replace('/lobby')
     }
   }
@@ -43,22 +59,29 @@ export default function AuthPage() {
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
       <div className="w-full max-w-sm">
-        {/* Logo */}
+
         <div className="text-center mb-8">
-          <button onClick={() => router.push('/')} className="font-display text-3xl text-[#ff2d55] tracking-widest hover:opacity-80 transition-opacity">
+          <button
+            onClick={() => router.push('/')}
+            className="font-display text-3xl text-[#ff2d55] tracking-widest hover:opacity-80 transition-opacity"
+          >
             BARDAPP
           </button>
+
           <p className="text-[#666680] text-xs tracking-widest mt-2">
             {mode === 'register' ? 'CREAR CUENTA' : 'INICIAR SESIÓN'}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Username + Avatar (solo registro) */}
+
           {mode === 'register' && (
             <>
               <div>
-                <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">Tu apodo de bardero</label>
+                <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">
+                  Tu apodo de bardero
+                </label>
+
                 <input
                   type="text"
                   value={username}
@@ -70,15 +93,23 @@ export default function AuthPage() {
                   className="w-full bg-[#141418] border border-[#2a2a35] text-white font-mono px-4 py-3 rounded focus:border-[#ff2d55] outline-none transition-colors"
                 />
               </div>
+
               <div>
-                <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">Tu avatar</label>
+                <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">
+                  Tu avatar
+                </label>
+
                 <div className="flex flex-wrap gap-2">
                   {AVATARS.map(a => (
                     <button
                       key={a}
                       type="button"
                       onClick={() => setAvatar(a)}
-                      className={`text-2xl w-12 h-12 rounded border transition-all ${avatar === a ? 'border-[#ff2d55] bg-[#2d0a12]' : 'border-[#2a2a35] bg-[#141418] hover:border-[#666680]'}`}
+                      className={`text-2xl w-12 h-12 rounded border transition-all ${
+                        avatar === a
+                          ? 'border-[#ff2d55] bg-[#2d0a12]'
+                          : 'border-[#2a2a35] bg-[#141418] hover:border-[#666680]'
+                      }`}
                     >
                       {a}
                     </button>
@@ -89,7 +120,10 @@ export default function AuthPage() {
           )}
 
           <div>
-            <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">Email</label>
+            <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">
+              Email
+            </label>
+
             <input
               type="email"
               value={email}
@@ -101,7 +135,10 @@ export default function AuthPage() {
           </div>
 
           <div>
-            <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">Contraseña</label>
+            <label className="text-xs text-[#666680] tracking-widest uppercase block mb-2">
+              Contraseña
+            </label>
+
             <input
               type="password"
               value={password}
@@ -124,18 +161,46 @@ export default function AuthPage() {
             disabled={loading}
             className="w-full bg-[#ff2d55] text-white font-display tracking-widest py-4 rounded hover:bg-[#ff4d6d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-lg"
           >
-            {loading ? 'CARGANDO...' : mode === 'register' ? 'CREAR CUENTA' : 'ENTRAR'}
+            {loading
+              ? 'CARGANDO...'
+              : mode === 'register'
+              ? 'CREAR CUENTA'
+              : 'ENTRAR'}
           </button>
         </form>
 
         <p className="text-center text-[#666680] text-sm mt-6">
           {mode === 'register' ? (
-            <>¿Ya tenés cuenta? <button onClick={() => router.push('/auth?mode=login')} className="text-[#ff2d55] hover:underline">Entrá acá</button></>
+            <>
+              ¿Ya tenés cuenta?{' '}
+              <button
+                onClick={() => router.push('/auth?mode=login')}
+                className="text-[#ff2d55] hover:underline"
+              >
+                Entrá acá
+              </button>
+            </>
           ) : (
-            <>¿No tenés cuenta? <button onClick={() => router.push('/auth?mode=register')} className="text-[#ff2d55] hover:underline">Registrate</button></>
+            <>
+              ¿No tenés cuenta?{' '}
+              <button
+                onClick={() => router.push('/auth?mode=register')}
+                className="text-[#ff2d55] hover:underline"
+              >
+                Registrate
+              </button>
+            </>
           )}
         </p>
       </div>
     </div>
+  )
+}
+
+export default function AuthPage() {
+  return (
+    <Suspense fallback={<div>Cargando...</div>}>
+      <AuthContent />
+    </Suspense>
   )
 }
