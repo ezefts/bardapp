@@ -1,26 +1,28 @@
+'use client'
+
 export default function BardAppGamingUI() {
   const cards = [
     {
       emoji: '😈',
-      title: 'QUIERO
-BARDEAR',
-      desc: 'Buscá a alguien
-que quiera recibir.',
+      title: `QUIERO
+BARDEAR`,
+      desc: `Buscá a alguien
+que quiera recibir.`,
       bg: 'from-red-500 to-red-900'
     },
     {
       emoji: '😭',
-      title: 'QUIERO QUE
-ME BARDEEN',
-      desc: 'Hoy vine a sufrir
-con humor.',
+      title: `QUIERO QUE
+ME BARDEEN`,
+      desc: `Hoy vine a sufrir
+con humor.`,
       bg: 'from-blue-400 to-blue-900'
     },
     {
       emoji: '⚔️',
-      title: 'DUELO
-BARDO MUTUO',
-      desc: '1 vs 1, sin excusas.',
+      title: `DUELO
+BARDO MUTUO`,
+      desc: `1 vs 1, sin excusas.`,
       bg: 'from-purple-500 to-purple-900'
     }
   ]
@@ -40,15 +42,21 @@ BARDO MUTUO',
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 bg-gradient-to-b from-orange-400 to-orange-700 px-6 py-3 rounded-2xl shadow-[0_8px_0_#5a2400] border border-orange-300/30">
               <span className="text-3xl">💀</span>
+
               <h1 className="text-4xl font-black tracking-tight text-white drop-shadow-lg">
                 BARDOAPP
               </h1>
             </div>
 
-            <h2 className="mt-6 text-3xl font-black">Hola, Nico</h2>
+            <h2 className="mt-6 text-3xl font-black">
+              Hola, Nico
+            </h2>
 
             <p className="text-zinc-300 text-lg mt-2">
-              Rango: <span className="font-bold text-yellow-400">Destructor Social ⭐</span>
+              Rango:{' '}
+              <span className="font-bold text-yellow-400">
+                Destructor Social ⭐
+              </span>
             </p>
 
             <p className="text-xl font-black mt-1 text-yellow-300">
@@ -63,7 +71,9 @@ BARDO MUTUO',
                 key={card.title}
                 className={`bg-gradient-to-b ${card.bg} rounded-2xl p-3 shadow-[0_6px_0_rgba(0,0,0,0.4)] border border-white/10 active:translate-y-1 active:shadow-none transition-all`}
               >
-                <div className="text-5xl mb-3">{card.emoji}</div>
+                <div className="text-5xl mb-3">
+                  {card.emoji}
+                </div>
 
                 <div className="text-lg font-black leading-tight whitespace-pre-line drop-shadow-md">
                   {card.title}
@@ -78,8 +88,11 @@ BARDO MUTUO',
 
           {/* Settings */}
           <div className="border-t border-white/10 pt-6">
+
             <div className="mb-5">
-              <p className="font-black text-xl mb-3">Tipo de sala:</p>
+              <p className="font-black text-xl mb-3">
+                Tipo de sala:
+              </p>
 
               <div className="grid grid-cols-2 gap-3">
                 <button className="bg-[#222631] border border-white/10 rounded-xl py-3 text-lg font-bold shadow-lg">
@@ -93,7 +106,9 @@ BARDO MUTUO',
             </div>
 
             <div>
-              <p className="font-black text-xl mb-3">Intensidad:</p>
+              <p className="font-black text-xl mb-3">
+                Intensidad:
+              </p>
 
               <div className="grid grid-cols-2 gap-3">
                 <button className="bg-gradient-to-b from-blue-400 to-blue-700 rounded-xl py-3 text-lg font-black shadow-[0_5px_0_#0d2f6b] border border-blue-200/20">
@@ -113,13 +128,18 @@ BARDO MUTUO',
           </button>
 
           <p className="text-center mt-6 text-xl font-bold text-zinc-200">
-            Hoy no se llora... hoy se <span className="text-orange-400">BARDEA.</span>
+            Hoy no se llora... hoy se{' '}
+            <span className="text-orange-400">
+              BARDEA.
+            </span>
           </p>
         </div>
 
         {/* Bottom Nav */}
         <div className="absolute bottom-0 left-0 right-0 z-20 bg-black/70 backdrop-blur-xl border-t border-white/10 px-3 py-3">
+
           <div className="grid grid-cols-4 text-center text-white">
+
             <button className="flex flex-col items-center gap-1 text-zinc-300">
               <span className="text-3xl">🏠</span>
               <span className="text-xs font-semibold">Inicio</span>
@@ -139,6 +159,7 @@ BARDO MUTUO',
               <span className="text-3xl">👤</span>
               <span className="text-xs font-semibold">Perfil</span>
             </button>
+
           </div>
         </div>
       </div>
