@@ -70,7 +70,7 @@ export default function HomePage() {
       <div style={{ textAlign:'center', padding:'80px 40px 60px', animation:'slideUp .6s ease' }}>
         <div style={{ fontSize:11, color:'#ff2d55', letterSpacing:4, marginBottom:24, textTransform:'uppercase' }}>// plataforma de bardeo en tiempo real</div>
         <div style={{ fontFamily:'Impact,sans-serif', fontSize:'clamp(56px, 10vw, 112px)', lineHeight:.9, color:'#f0f0f5', letterSpacing:4, marginBottom:8 }}>
-          BARDÁ<br /><span style={{ color:'#ff2d55' }}>O CALLATE</span>
+          BARDEÁ<br /><span style={{ color:'#ff2d55' }}>O CALLATE</span>
         </div>
         <div style={{ fontSize:13, color:'#444455', maxWidth:480, margin:'24px auto 40px', lineHeight:1.8 }}>
           Duelos de puteadas en tiempo real. Matchmaking instantáneo. La gente vota. El mejor bardero gana.
